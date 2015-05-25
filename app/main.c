@@ -11,7 +11,11 @@
 #define turnOffLED4()	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5, GPIO_PIN_RESET);
 
 #define switchControl()	HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)
-#define yield() state = __LINE__; break; case __LINE__:
+
+#define initTaskBlock(x) 	((x)->state = 0)
+#define yield(x) 			(x)->state = __LINE__; break; case __LINE__:
+#define startTask(x) 		switch((x)->state) { case 0:
+#define endTask(x) 			}
 
 typedef enum{
 	LED_INITIAL,
@@ -19,6 +23,10 @@ typedef enum{
 	LED_OFF_STATE
 	//LED_FINAL
 }State;
+
+typedef struct{
+	State state;
+}TaskBlock;
 
 uint32_t currentTime = 0;
 int FAST_BLINK = 20;
@@ -257,35 +265,40 @@ void blink_LED3()
 								break;
 		}
 }
-void yieldTest()
+void yieldTest(TaskBlock *tb)
 {
-	static uint32_t state = 1;
+	static uint32_t state = 0;
 	static int here = 0;
 	while(1)
 	{
-		switch(state)
-		{
-		case 1: here = 1;
-				yield();
-				here = 2;
-				yield();
-				here = 3;
-				yield();
-				here = 4;
-				break;
-		}
+		startTask(tb);
+
+		here = 0;
+		yield(tb);
+		here = 1;
+		yield(tb);
+		here = 2;
+		yield(tb);
+		here = 3;
+		yield(tb);
+
+		endTask();
+
 	}
 }
 
 int main(void)
 {
+	TaskBlock tb;
+	initTaskBlock(&tb);
+
 	initControl();
 	initLED1();
 	initLED2();
 	initLED3();
 	initLED4();
 
-	yieldTest();
+	//yieldTest(&tb); //stop here
 
 	while(1)
 		{
