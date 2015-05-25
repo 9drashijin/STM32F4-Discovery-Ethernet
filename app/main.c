@@ -17,6 +17,11 @@
 #define startTask(x) 		switch((x)->state) { case 0:
 #define endTask(x) 			}
 
+#define yieldLED1() 		state = __LINE__; } break; case __LINE__:
+#define startTaskLED1()		switch(state) { case 0:
+#define endTaskLED1()		state = 0;} break;}
+
+
 typedef enum{
 	LED_INITIAL,
 	LED_ON_STATE,
@@ -25,7 +30,7 @@ typedef enum{
 }State;
 
 typedef struct{
-	State state;
+	uint32_t state;
 }TaskBlock;
 
 uint32_t currentTime = 0;
@@ -265,12 +270,37 @@ void blink_LED3()
 								break;
 		}
 }
+
+void blink_LED1_yield()
+{
+	static uint32_t state = 0;
+	static uint32_t previousTime = 0;
+
+		startTaskLED1()
+
+		turnOnLED1();turnOnLED3();
+		if(delay(10, previousTime))
+		{
+		previousTime = currentTime;
+		yieldLED1()
+		turnOnLED1();turnOnLED3();
+		if(delay(10, previousTime))
+		{
+		previousTime = currentTime;
+		yieldLED1()
+		turnOffLED1();turnOffLED3();
+		if(delay(10, previousTime))
+		{
+		previousTime = currentTime;
+
+		endTaskLED1()
+}
+
 void yieldTest(TaskBlock *tb)
 {
 	static uint32_t state = 0;
 	static int here = 0;
-	while(1)
-	{
+
 		startTask(tb);
 
 		here = 0;
@@ -284,7 +314,6 @@ void yieldTest(TaskBlock *tb)
 
 		endTask();
 
-	}
 }
 
 int main(void)
@@ -298,12 +327,13 @@ int main(void)
 	initLED3();
 	initLED4();
 
-	//yieldTest(&tb); //stop here
-
 	while(1)
 		{
-			blink_LED1();
-			blink_LED2();
-			blink_LED3();
+			//blink_LED1();
+			//blink_LED2();
+			//blink_LED3();
+
+			blink_LED1_yield();
+			//yieldTest(&tb); //stop here
 		}
 }
