@@ -1,3 +1,6 @@
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_gpio.h"
+
 #define turnOnLED1() 	HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
 #define turnOffLED1() 	HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_RESET);
 #define turnOnLED2() 	HAL_GPIO_WritePin(GPIOG, GPIO_PIN_14, GPIO_PIN_SET);
