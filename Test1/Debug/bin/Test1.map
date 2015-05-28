@@ -606,19 +606,19 @@ OUTPUT(Test1.elf elf32-littlearm)
  .debug_aranges
                 0x00000128       0x20 ..\obj\Ethernet.o
 
-.debug_line     0x00000000     0x225d
- .debug_line    0x00000000      0x301 ..\obj\LED.o
- .debug_line    0x00000301      0x7b1 ..\obj\stm32f4xx_hal_eth.o
- .debug_line    0x00000ab2      0x332 ..\obj\stm32f4xx_hal_cortex.o
- .debug_line    0x00000de4      0x1cb ..\obj\system_stm32f4xx.o
- .debug_line    0x00000faf      0x33f ..\obj\stm32f4xx_hal.o
- .debug_line    0x000012ee      0x436 ..\obj\stm32f4xx_hal_gpio.o
- .debug_line    0x00001724      0x59b ..\obj\stm32f4xx_hal_rcc.o
- .debug_line    0x00001cbf       0xaf ..\obj\startup_stm32f429xx.o
- .debug_line    0x00001d6e      0x278 ..\obj\main.o
- .debug_line    0x00001fe6      0x277 ..\obj\Ethernet.o
+.debug_line     0x00000000     0x24b0
+ .debug_line    0x00000000      0x344 ..\obj\LED.o
+ .debug_line    0x00000344      0x7f4 ..\obj\stm32f4xx_hal_eth.o
+ .debug_line    0x00000b38      0x375 ..\obj\stm32f4xx_hal_cortex.o
+ .debug_line    0x00000ead      0x1cb ..\obj\system_stm32f4xx.o
+ .debug_line    0x00001078      0x382 ..\obj\stm32f4xx_hal.o
+ .debug_line    0x000013fa      0x479 ..\obj\stm32f4xx_hal_gpio.o
+ .debug_line    0x00001873      0x5de ..\obj\stm32f4xx_hal_rcc.o
+ .debug_line    0x00001e51       0xaf ..\obj\startup_stm32f429xx.o
+ .debug_line    0x00001f00      0x2bb ..\obj\main.o
+ .debug_line    0x000021bb      0x2f5 ..\obj\Ethernet.o
 
-.debug_str      0x00000000     0x2147
+.debug_str      0x00000000     0x215c
  .debug_str     0x00000000      0x41f ..\obj\LED.o
                                 0x490 (size before relaxing)
  .debug_str     0x0000041f      0xbef ..\obj\stm32f4xx_hal_eth.o
@@ -635,8 +635,8 @@ OUTPUT(Test1.elf elf32-littlearm)
                                 0x6d2 (size before relaxing)
  .debug_str     0x0000206b       0x47 ..\obj\main.o
                                 0x703 (size before relaxing)
- .debug_str     0x000020b2       0x95 ..\obj\Ethernet.o
-                                0x838 (size before relaxing)
+ .debug_str     0x000020b2       0xaa ..\obj\Ethernet.o
+                                0x84d (size before relaxing)
 
 .comment        0x00000000       0x70
  .comment       0x00000000       0x70 ..\obj\LED.o
